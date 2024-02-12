@@ -1,0 +1,89 @@
+*{  /*definition de la box ces bordures*/
+    box-sizing: border-box;
+}
+:root{  /*calcule de la taille de la carte avec hauteur,largeur*/
+    --card-height: 300px;
+    --card-width: calc(var(--card-height)/1.5);
+}
+body{   /*Initialisation de tous le corps du site*/
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #191c29;
+}
+.card{  /*initialisation global de la carte avec la transition plus les images*/
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 0 50px;
+    cursor: pointer;
+}
+.wrapper{   /*initialisation de la transition son point de départ et le temps d'activation */
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    transition: all 0.5s;
+}
+.cover-img{ /*Taille de l'image, et ça propriété*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+.card:hover .wrapper{   /*La perspective Y,X,Z + le shadow box soit l'ombre*/
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0,0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+.wrapper::before,
+.wrapper::after{ /*L'emplacement, la taille, et remplace avec la prochaine valeur */
+    content:'';
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+}
+.wrapper::before{ /*La transition avant*/
+    top: 0;
+    height: 100%;
+    background-image:linear-gradient(to top, transparent 46%, rgba(12, 13, 19, 0.5)68%, rgba(12, 13, 19) 97%) ;
+}
+.wrapper::after{   /*La transition après*/
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(to bottom, transparent 46%, rgba(12, 13, 19, 0.5) rgba(12, 13, 19) 97%);
+}
+.card:hover .wrapper::before, .wrapper::after{  /*L'origin de la transition avant et après*/
+    opacity: 1;
+}
+.card:hover .wrapper::after{    /*L'augentation de grandeur de 120px après transition*/
+    height: 120px;
+}
+.title{ /*L'origin de la class title ( sa taille et le temps de transition*/
+    width: 100%;
+    transition: transform 0.5s;
+}
+.card:hover .title{ /*La taille de la class title après transition*/
+    transform: translate3d(0%, -50px, 100px);
+}
+.character{ /*mise en forme de la class character (ça taille son emplacement d'origin, son emplacement de fin et le temps de transition*/
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    transition: transform 0.5s;
+}
+.card:hover .character{ /* concerne la position de la class character et sa taille après transition*/
+    opacity: 1;
+    transform: translate3d(0%, -30%, 100px);
+}
