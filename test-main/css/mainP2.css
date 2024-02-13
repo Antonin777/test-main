@@ -1,0 +1,22 @@
+body{   /*Initialisation de tous le corps du site*/
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #191c29;
+}
+.folder-img{
+    width: 700px;
+    aspect-ratio: 1.92;
+    display: flex;
+    cursor: pointer;
+}
+span {
+    width: 20px;
+    height: 100%;
+    background-image: url('img.jpg') ;
+    background-size: cover;
+    transition: 0.5s ease-in-out;
+}
